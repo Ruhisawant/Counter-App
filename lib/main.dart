@@ -24,15 +24,17 @@ class CounterWidget extends StatefulWidget {
 
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0; //initial couter value
+  int _value = 1;
+
 
   void incrementCounter() {
     setState((){
-      _counter++;
+      _counter += _value;
     });
   }
   void decrementCounter() {
     setState((){
-      _counter--;
+      _counter -= _value;
     });
   }
   void resetCounter() {
@@ -75,9 +77,25 @@ class _CounterWidgetState extends State<CounterWidget> {
             child: const Text('Reset'),
           ),
 
+          TextField(
+            decoration: const InputDecoration(
+              labelText: 'Add Custom Increment Value',
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+            onSubmitted: (text) {
+              if (text.isNotEmpty) {
+                int enteredNumber = int.tryParse(text) ?? 0;
+                setState(() {
+                  _value = enteredNumber;
+                });
+              }
+            }, // make the text box empty after submitted
+          ),
+
           Slider(
             min: 0,
-            max: 100,
+            max: 1000,
             value: _counter.toDouble(),
             onChanged: (double value) {
               setState(() {
