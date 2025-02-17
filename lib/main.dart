@@ -25,18 +25,30 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0; //initial couter value
   int _value = 1;
-
+  int min = 0;
+  int max = 1000;
+  String _limitMessage = '';
 
   void incrementCounter() {
-    setState((){
-      _counter += _value;
+    setState(() {
+      if (_counter + _value <= max) {
+        _counter += _value;
+      } else {
+        _limitMessage = 'Maximum limit reached!';
+      }
     });
   }
+
   void decrementCounter() {
-    setState((){
-      _counter -= _value;
+    setState(() {
+      if (_counter - _value >= min) {
+        _counter -= _value;
+      } else {
+        _limitMessage = 'Minimum limit reached!';
+      }
     });
   }
+
   void resetCounter() {
     setState((){
       _counter = 0;
@@ -55,10 +67,19 @@ class _CounterWidgetState extends State<CounterWidget> {
           Center(
             child: Container(
               color: Colors.blue,
-              child: Text(
-                '$_counter', //displays the current number
-                style: const TextStyle(fontSize: 50.0),
-              ),
+              child: Column(
+                children: [
+                  Text(
+                    '$_counter', // displays the current number
+                    style: const TextStyle(fontSize: 50.0),
+                  ),
+                  if (_limitMessage.isNotEmpty)
+                    Text(
+                      _limitMessage,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                ],
+              )
             ),
           ),
 
@@ -73,6 +94,7 @@ class _CounterWidgetState extends State<CounterWidget> {
           ),
 
           ElevatedButton(
+            
             onPressed: resetCounter,
             child: const Text('Reset'),
           ),
