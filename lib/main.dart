@@ -24,6 +24,22 @@ class CounterWidget extends StatefulWidget {
 
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0; //initial couter value
+
+  void incrementCounter() {
+    setState((){
+      _counter++;
+    });
+  }
+  void decrementCounter() {
+    setState((){
+      _counter--;
+    });
+  }
+  void resetCounter() {
+    setState((){
+      _counter = 0;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -42,6 +58,21 @@ class _CounterWidgetState extends State<CounterWidget> {
                 style: const TextStyle(fontSize: 50.0),
               ),
             ),
+          ),
+
+          ElevatedButton(
+            onPressed: incrementCounter,
+            child: const Text('Add'),
+          ),
+
+          ElevatedButton(
+            onPressed: decrementCounter,
+            child: const Text('Delete'),
+          ),
+
+          ElevatedButton(
+            onPressed: resetCounter,
+            child: const Text('Reset'),
           ),
 
           Slider(
