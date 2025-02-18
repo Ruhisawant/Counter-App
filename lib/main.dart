@@ -58,6 +58,15 @@ class _CounterWidgetState extends State<CounterWidget> {
       _history.clear();
     });
   }
+
+  void undoCounter() {
+    if (_history.isNotEmpty) {
+      setState(() {
+        _history.removeLast();
+        _counter = _history.isNotEmpty ? _history.last : 0;
+      });
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -103,9 +112,13 @@ class _CounterWidgetState extends State<CounterWidget> {
           ),
 
           ElevatedButton(
-            
             onPressed: resetCounter,
             child: const Text('Reset'),
+          ),
+
+          ElevatedButton(
+            onPressed: undoCounter,
+            child: const Text('Undo'),
           ),
 
           TextField(
