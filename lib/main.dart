@@ -4,15 +4,14 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Stateful Widget', // Application name
+      title: 'Stateful Widget',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CounterWidget(), // A widget that will be started on the application startup
+      home: CounterWidget(),
     );
   }
 }
@@ -84,7 +83,7 @@ class _CounterWidgetState extends State<CounterWidget> {
               child: Column(
                 children: [
                   Text(
-                    '$_counter', // displays the current number
+                    '$_counter',
                     style: TextStyle(
                       fontSize: 50.0,
                       color: _counter == 0
@@ -142,7 +141,8 @@ class _CounterWidgetState extends State<CounterWidget> {
                   _value = enteredNumber;
                 });
               }
-            }, // make the text box empty after submitted
+            },
+            controller: TextEditingController()..clear(),
           ),
 
           Slider(
