@@ -52,8 +52,4 @@ A simple Flutter application that allows users to increment, decrement, reset, u
 - Flutter
 - Dart
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-Let me know if you'd like to add any additional information or modify this README!
+Thank you for visiting my app!
