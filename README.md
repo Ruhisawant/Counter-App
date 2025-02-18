@@ -1,20 +1,59 @@
-<<<<<<< HEAD
-# act_4
+# Counter App
 
-A new Flutter project.
+A simple Flutter application that allows users to increment, decrement, reset, undo changes, and maintain a history of counter values. The app also provides a slider to adjust the counter value and a text field to input custom increment values.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Increment & Decrement**: Allows the user to increase or decrease the counter by a specified value.
+- **Undo**: Undo the last action made on the counter.
+- **Reset**: Resets the counter value and history to the initial state.
+- **Custom Increment**: Enter a custom value to increment or decrement the counter.
+- **Slider**: Adjust the counter value using a slider.
+- **History**: View the history of counter values, displayed horizontally.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/counter-app.git
+   ```
+   
+2. Navigate to the project directory:
+   ```bash
+   cd counter-app
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# Counter-App
->>>>>>> be9b3e307e11b9a544f6ef803446695396688dcd
+3. Install the dependencies:
+   ```bash
+   flutter pub get
+   ```
+
+4. Run the app:
+   ```bash
+   flutter run
+   ```
+
+## Usage
+
+- **Increment**: Press the "Add X" button to increase the counter by the specified value.
+- **Decrement**: Press the "Delete X" button to decrease the counter by the specified value.
+- **Undo**: Press the "Undo" button to revert the last change.
+- **Reset**: Press the "Reset" button to reset the counter to 0 and clear the history.
+- **Custom Increment**: Enter a custom increment value in the text field and press "Enter" to use it for the next increment or decrement.
+- **Slider**: Adjust the counter using the slider, which updates the counter value in real-time.
+
+## Limitations
+
+- The app prevents the counter from exceeding the maximum (100) or going below the minimum (0) values.
+- If the counter reaches the maximum or minimum limit, a message will be displayed.
+
+## Technologies Used
+
+- Flutter
+- Dart
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Let me know if you'd like to add any additional information or modify this README!

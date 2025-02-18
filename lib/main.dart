@@ -93,7 +93,7 @@ class CounterWidgetState extends State<CounterWidget> {
             children: [
               Column(
                 children: [
-                  // Display the counter value with dynamic color based on the value
+                  // Display counter value
                   Text(
                     '$_counter',
                     style: TextStyle(
