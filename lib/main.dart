@@ -28,11 +28,13 @@ class _CounterWidgetState extends State<CounterWidget> {
   int min = 0;
   int max = 100;
   String _limitMessage = '';
+  final List<int>_history = [];
 
   void incrementCounter() {
     setState(() {
       if (_counter + _value <= max) {
         _counter += _value;
+        _history.add(_counter);
       } else {
         _limitMessage = 'Maximum limit reached!';
       }
@@ -43,6 +45,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     setState(() {
       if (_counter - _value >= min) {
         _counter -= _value;
+        _history.add(_counter);
       } else {
         _limitMessage = 'Minimum limit reached!';
       }
@@ -50,8 +53,9 @@ class _CounterWidgetState extends State<CounterWidget> {
   }
 
   void resetCounter() {
-    setState((){
+    setState(() {
       _counter = 0;
+      _history.clear();
     });
   }
   
@@ -132,6 +136,19 @@ class _CounterWidgetState extends State<CounterWidget> {
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
           ),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: _history.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text('Values: ${_history[index]}'),
+                );
+              },
+            ),
+          ),
+
+
         ],
       ),
     );
