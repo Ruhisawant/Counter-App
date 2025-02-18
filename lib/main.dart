@@ -25,8 +25,8 @@ class CounterWidget extends StatefulWidget {
 }
 
 class CounterWidgetState extends State<CounterWidget> {
-  final List<int> _history = [];
   final TextEditingController _controller = TextEditingController();
+  final List<int> _history = [];
   String _limitMessage = '';
   int _counter = 0;
   int _value = 1;
@@ -34,6 +34,7 @@ class CounterWidgetState extends State<CounterWidget> {
   int min = 0;
   int max = 100;
 
+  // Increment counter
   void incrementCounter() {
     setState(() {
       if (_counter + _value <= max) {
@@ -45,6 +46,7 @@ class CounterWidgetState extends State<CounterWidget> {
     });
   }
 
+  // Decrement counter
   void decrementCounter() {
     setState(() {
       if (_counter - _value >= min) {
@@ -56,6 +58,7 @@ class CounterWidgetState extends State<CounterWidget> {
     });
   }
 
+  // Reset counter, history, and other related variables
   void resetCounter() {
     setState(() {
       _counter = 0;
@@ -65,6 +68,7 @@ class CounterWidgetState extends State<CounterWidget> {
     });
   }
 
+  // Undo last counter change
   void undoCounter() {
     if (_history.isNotEmpty) {
       setState(() {
@@ -89,6 +93,7 @@ class CounterWidgetState extends State<CounterWidget> {
             children: [
               Column(
                 children: [
+                  // Display the counter value with dynamic color based on the value
                   Text(
                     '$_counter',
                     style: TextStyle(
@@ -99,11 +104,13 @@ class CounterWidgetState extends State<CounterWidget> {
                           : (_counter >= 50 ? Colors.green : Colors.black),
                     ),
                   ),
+                  // Display limit message
                   if (_limitMessage.isNotEmpty)
                     Text(
                       _limitMessage,
                       style: const TextStyle(color: Colors.red, fontSize: 16),
                     ),
+                  // Display target reached message
                   if (_counter == targetNum)
                     const Text(
                       'You\'ve reached the target number!',
@@ -113,12 +120,14 @@ class CounterWidgetState extends State<CounterWidget> {
               ),
 
               const SizedBox(height: 30),
-              
+
+              // Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: [
+                      // Add Button
                       ElevatedButton(
                         onPressed: incrementCounter,
                         style: ElevatedButton.styleFrom(
@@ -131,6 +140,7 @@ class CounterWidgetState extends State<CounterWidget> {
                       
                       const SizedBox(height: 10),
                       
+                      // Undo button
                       ElevatedButton(
                         onPressed: undoCounter,
                         style: ElevatedButton.styleFrom(
@@ -147,6 +157,7 @@ class CounterWidgetState extends State<CounterWidget> {
                   
                   Column(
                     children: [
+                      // Delete button
                       ElevatedButton(
                         onPressed: decrementCounter,
                         style: ElevatedButton.styleFrom(
@@ -159,6 +170,7 @@ class CounterWidgetState extends State<CounterWidget> {
                       
                       const SizedBox(height: 10),
                       
+                      // Reset button
                       ElevatedButton(
                         onPressed: resetCounter,
                         style: ElevatedButton.styleFrom(
@@ -175,6 +187,7 @@ class CounterWidgetState extends State<CounterWidget> {
 
               const SizedBox(height: 30),
               
+              // TextField to allow custom increment value
               TextField(
                 controller: _controller,
                 decoration: const InputDecoration(
@@ -196,6 +209,7 @@ class CounterWidgetState extends State<CounterWidget> {
 
               const SizedBox(height: 20),
 
+              // Slider to adjust the counter value
               Slider(
                 min: 0,
                 max: 100,
@@ -211,6 +225,7 @@ class CounterWidgetState extends State<CounterWidget> {
 
               const SizedBox(height: 20),
               
+              // History label
               Align(
                 alignment: Alignment.centerLeft,
                 child: const Text(
@@ -221,8 +236,9 @@ class CounterWidgetState extends State<CounterWidget> {
 
               const SizedBox(height: 10),
 
+              // History display
               SizedBox(
-                height: 100, 
+                height: 100,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: _history.length,
@@ -231,12 +247,12 @@ class CounterWidgetState extends State<CounterWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
                         '${_history[index]}',
-                        style: TextStyle(fontSize: 25)
+                        style: const TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
