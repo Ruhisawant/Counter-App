@@ -29,6 +29,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   int max = 100;
   String _limitMessage = '';
   final List<int>_history = [];
+  int targetNum = 50;
 
   void incrementCounter() {
     setState(() {
@@ -91,11 +92,18 @@ class _CounterWidgetState extends State<CounterWidget> {
                           : (_counter >= 50 ? Colors.green : Colors.black),
                     ),
                   ),
+
                   if (_limitMessage.isNotEmpty) 
                     Text(
                       _limitMessage,
                       style: const TextStyle(color: Colors.red),
-                  ),
+                    ),
+
+                  if (_counter == targetNum) 
+                    const Text(
+                      'You\'ve reached the target number!',
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
                 ],
               )
             ),
@@ -160,8 +168,6 @@ class _CounterWidgetState extends State<CounterWidget> {
               },
             ),
           ),
-
-
         ],
       ),
     );
