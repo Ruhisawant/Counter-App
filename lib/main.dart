@@ -26,7 +26,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0; //initial couter value
   int _value = 1;
   int min = 0;
-  int max = 1000;
+  int max = 100;
   String _limitMessage = '';
 
   void incrementCounter() {
@@ -71,13 +71,18 @@ class _CounterWidgetState extends State<CounterWidget> {
                 children: [
                   Text(
                     '$_counter', // displays the current number
-                    style: const TextStyle(fontSize: 50.0),
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      color: _counter == 0
+                          ? Colors.red
+                          : (_counter >= 50 ? Colors.green : Colors.black),
+                    ),
                   ),
-                  if (_limitMessage.isNotEmpty)
+                  if (_limitMessage.isNotEmpty) 
                     Text(
                       _limitMessage,
                       style: const TextStyle(color: Colors.red),
-                    ),
+                  ),
                 ],
               )
             ),
@@ -117,7 +122,7 @@ class _CounterWidgetState extends State<CounterWidget> {
 
           Slider(
             min: 0,
-            max: 1000,
+            max: 100,
             value: _counter.toDouble(),
             onChanged: (double value) {
               setState(() {
